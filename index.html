@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=7,IE=9" />
+		<!--The viewport meta tag is used to improve the presentation and behavior of the samples
+		on iOS devices-->
+		
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+		
+		<title>Map Card</title>
+		<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.2/js/dojo/dijit/themes/tundra/tundra.css">
+		<link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.2/js/esri/css/esri.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body class="tundra">
+		<div id="bc" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props='design:"headline", gutters:false'>
+			<div id="header" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props='region:"top",design:"sidebar", gutters:false'>
+				<div id="headMain" data-dojo-type="dijit.layout.ContentPane" data-dojo-props='region:"center"'>
+					<span id='title'>temp title</span>
+				</div>
+				<div id="headRight" data-dojo-type="dijit.layout.ContentPane" data-dojo-props='region:"right"'>
+					<button id="appBtn" class="loadButton" data-dojo-type="dijit.form.Button" type="button">
+						Load App Info
+						<script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+							app.getAppData();
+						</script>
+					</button>
+					<button id="mapBtn" class="loadButton" data-dojo-type="dijit.form.Button" type="button" data-dojo-props="disabled: 'disabled'">
+						Load Web Map Info
+						<script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+							app.getWebMapInfo();
+						</script>
+					</button>
+				</div>
+			</div>
+			<div id="description" data-dojo-type="dijit.layout.ContentPane" data-dojo-props='region:"left"'></div>
+			<div id="center" data-dojo-type="dijit.layout.ContentPane" data-dojo-props='region:"center"'>
+				<div id="map"></div>
+			</div>
+		</div>
+		<!--
+		Place script tags at the bottom for best performance
+		http://developer.yahoo.com/performance/rules.html#js_bottom
+		-->
+		<script type="text/javascript">
+			var djConfig = {
+				parseOnLoad : true
+			};
+
+		</script>
+		<script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.2"></script>
+		<script src="js/app.js" type="text/javascript"></script>
+		<script src="js/defaultConfig.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			//Since I'm using dijits via markup, I'll include the require statements here
+			dojo.require("dijit.layout.BorderContainer");
+			dojo.require("dijit.layout.ContentPane");
+			dojo.require("dijit.form.Button");
+			//Startup
+			dojo.addOnLoad(app.init);
+
+		</script>
+	</body>
+</html>
